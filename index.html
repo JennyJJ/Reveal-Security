@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Four51 | Security Standards</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="A presentation about SSL, Mixed Content & Security Standards">
+		<meta name="author" content="Four51 - John W / Jen R">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -15,7 +15,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!--Four51-->
+		<link rel="stylesheet" href="css/theme/four51.css" id="theme">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link href="/images/favicon.ico" rel="shortcut icon">
+		<link href='//fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -38,49 +43,234 @@
 
 		<div class="reveal">
 
+			<div class="home">
+				<a href="#/">
+					<i class="fa fa-home fa-1x"></i>
+				</a>
+			</div>
+
+			<div class="topics">
+				<a href="#/1">
+					<i class="fa fa-bars fa-1x"></i>
+				</a>
+			</div>
+
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
+					<h2>Security Standards</h2>
+					<h3>SPA, SSL &amp; Mixed Content</h3>
+					<!--<p>
+						<small>Created by John Waangard and Jen Rasmussen</small>
+					</p>-->
+				</section>
+
+				<section>
+					<h3>Topics</h3>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+					<ul style="line-height:1.5em;">
+						<li><a href="#/2">Security Standards</a></li>
+						<li><a href="#/3">SSL &amp; the Encryption Chain</a></li>
+						<li><a href="#/4">SSL &amp; Custom URL's</a></li>
+						<li><a href="#/5">SSL &amp; Mixed Content</a></li>
+						<li><a href="#/6">SSL &amp; SPA (Single Page Application)</a></li>
+						<li><a href="#/7">Mitigating Risks</a></li>
+					</ul>
+					</p>
+
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them
+						if you open the speaker notes window (hit 's' on your keyboard).
+					</aside>
+				</section>
+
+				<section>
+					<h3>Security Standards</h3>
+					<h5>Why is it important?</h5>
+					<p>Any web application that processes credit card information is required by law to comply with PCI <small style="vertical-align: middle">(Personal Card Information)</small>
+						Data Security Standards. One of the most important provisions of PCI Compliance is <em>&quot;protecting cardholder data by encrypting transmissions of cardholder data and sensitive information across public
+							networks.&quot;</em>.
 					</p>
 				</section>
 
 				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
+					<section>
+						<h3>SSL &amp; the Encryption Chain</h3>
+						<h5>What does it mean?</h5>
+						<p>SSL stands for Secure Sockets Layer. A secure sockets layer provides a secure <strong>encrypted</strong> connection between browsers and websites,
+							allowing you to transmit private data online. Sites secured with an SSL certificate display a padlock in the browsers URL and possibly a green address bar depending
+							on the browser.
+						</p>
+					</section>
+					<section>
+						<h3>SSL &amp; the Encryption Chain</h3>
+						<h5>Why is it important?</h5>
+						<p>When a web site or application is encrypted with an SSL certificate, the content is served over an <strong>https <em>(secured)</em></strong>  rather than an
+							<strong>http</strong> connection.</p>
+					</section>
+
+					<aside class="notes">
+						<p>Use the <em>Space</em> key to navigate through all slides.</p>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h3>SSL &amp; Custom URL's</h3>
+						<h5></h5>
+						<p>For the purposes of white labeling, Four51 customers are able to register their own domain name and point it to their Four51 single page application.
+							For example a custom url would enable <strong>yourname.four51ordercloud.com</strong> to become <strong>yourname.yourdomain.com</strong>.
+						</p>
+					</section>
+					<section>
+						<h3>SSL &amp; Custom URL's</h3>
+						<h5>Require 3rd party SSL</h5>
+						<p>If a custom url is accessed without a site certificate over https, the user will be alerted in their browser that the site is not safe to proceed.
+							Because the application delivers all content over https, the browser security lock will warn the user that the Four51 application is an untrusted site UNLESS
+							an SSL certificate for that domain and provided from a third party is installed.</p>
+					</section>
+					<section>
+						<h3>SSL &amp; Custom URL's</h3>
+						<h5>Summary</h5>
+						<p>When the appropriate SSL certificate is installed, the browser padlock will be green assuring the user that the site is secure.
+							This SSL certificate is essential to bind together a domain name, Four51's application server, and organizational identities to initiate secure sessions with browsers.
+						</p>
+					</section>
+
+					<aside class="notes">
+						<p>Use the <em>Space</em> key to navigate through all slides.</p>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h3>SSL &amp; Mixed Content</h3>
+						<h5>What is mixed content?</h5>
+						<p>Mixed content is when plain text content (i.e http) is served over an https connection. The http resources are insecure and attackers may then use these resources to
+							modify data during transit, such as images and script files (known as cross-site scripting (XSS) or MITM (Man in the Middle) attacks), and therefore compromise the
+							entire encryption chain.
+						</p>
+					</section>
+					<section>
+						<h3>SSL &amp; Mixed Content</h3>
+						<h5>What is inline linking?</h5>
+						<p>Inline linking, or &quot;hotlinking&quot;, is &quot;the use of a linked object, often an image, from one site by a web page belonging to a second site.&quot;</p>
+					</section>
+					<section>
+						<h3>SSL &amp; Mixed Content</h3>
+						<h5>What is inline linking?</h5>
+						<p>For example, a user adds an image to a file override in a 2.0 application linking to an image on their public site.</p>
+						<img width="60%" height="60%" src="images/mixed-content.JPG" />
+					</section>
+					<section>
+						<h3>SSL &amp; Mixed Content</h3>
+						<h5>Why is it important?</h5>
+						<div style="float:left; width:50%;">
+							<img src="images/homeHelpers-mixed1.JPG" />
+							The browser lock and encryption are broken.
+						</div>
+						<div style="float:right; width:50%">
+							<img src="images/homeHelpers-mixed2.JPG" />
+						</div>
+					</section>
+					<section>
+						<h3>SSL &amp; Mixed Content</h3>
+						<h5>Why is it important?</h5>
+						<img width="60%" height="60%" src="images/bogus.gif" />
+					</section>
+					<section>
+						<h3>SSL &amp; Mixed Content</h3>
+						<h5>Why is it important?</h5>
+						<p>Mixed content is &quot;arguably the easiest way to completely mess up your web site encryption&quot; or SSL.<br /><br />
+							<small>Source: <a href="https://community.qualys.com/blogs/securitylabs/2014/03/19/https-mixed-content-still-the-easiest-way-to-break-ssl" target="_blank">
+								https://community.qualys.com/blogs/securitylabs/2014/03/19/https-mixed-content-still-the-easiest-way-to-break-ssl</a></small></p>
+					</section>
+					<section>
+						<h3>SSL &amp; Mixed Content</h3>
+						<h5>Summary</h5>
+						<p>Although the Four51 OrderCloud API has provisions in place to mitigate attacks using insecure resources, the user experience should result in confidence that
+							personal card information and the application remains secure.
+						</p>
+					</section>
+
+					<aside class="notes">
+						<p>Use the <em>Space</em> key to navigate through all slides.</p>
+					</aside>
 				</section>
 
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
+						<h3>SPA ( Single Page Application )</h3>
+						<h5>What does it mean?</h5>
+						<p>A single-page application is a web application that <span style="text-decoration:underline;">loads a single HTML page</span> and dynamically updates the page as
+							the user interacts with the application.</p>
+					</section>
+					<section>
+						<h3>SPA ( Single Page Application )</h3>
+						<h5>What does it mean?</h5>
+						<p>This means that all necessary code and assets&mdash;HTML, JavaScript, CSS, and Images&mdash;are retrieved in that initial single page load.</p>
+					</section>
+					<section>
+						<h3>SPA ( Single Page Application )</h3>
+						<h5>Why is it important?</h5>
+						<p>Order Cloud 2.0 is a SPA (single page application) which means any time a page is hit that has an insecure resource, the transaction from that
+							point forward is insecure and not encrypted.</p>
+					</section>
+					<section>
+						<h3>SPA ( Single Page Application )</h3>
+						<h5>Why is it important?</h5>
+						<p>Because a SPA (single page application) loads all assets on the initial page load, the transaction will be insecure and not encrypted throughout the whole session.</p>
+					</section>
+
+					<aside class="notes">
 						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
-					</section>
+					</aside>
 				</section>
 
+				<!-- Example of nested vertical slides -->
 				<section>
+					<section>
+						<h3>Mitigating Risks</h3>
+						<h5>Store in the Repository</h5>
+						<p>If the application uses a repository, images should ALWAYS be stored in the repository.</p>
+					</section>
+					<section>
+						<h3>Mitigating Risks</h3>
+						<h5>Custom User fields</h5>
+						<p>If the application uses file overrides, the best option is to serve the resource via the application i.e. custom user fields.</p>
+						<p>Custom user fields can be accessed by specifying a scope variable in your javascript file. </p>
+						<section data-markdown>
+							```
+							angular.forEach($scope.user.CustomFields, function(field) {
+								if (field.Name == 'Foo') {
+									$scope.Bar = field.Value;
+								}
+							});
+							```
+						</section>
+					</section>
+					<section>
+						<h3>Mitigating Risks</h3>
+						<h5>Themes</h5>
+						<p>The second best option is to serve the resource via a Themes folder (https accessible) and use relative linking.</p>
+						<img src="images/theme1.JPG" />
+						<pre><code><img src="//www.four51.com/Themes/Custom/1a6d0626-1719-4a8f-9988-029e544b2fae/HomeHelpers/[image]" /></code></pre>
+					</section>
+					<section>
+						<h3>Mitigating Risks</h3>
+						<h5>Relative Linking</h5>
+						<p>If a http resource is also available via https use relative linking.</p>
+						<pre><code><img src="http://www.four51.com/Themes/Custom/1a6d0626-1719-4a8f-9988-029e544b2fae/HomeHelpers/[image]" /></code></pre>
+						<pre><code><img src="//www.four51.com/Themes/Custom/1a6d0626-1719-4a8f-9988-029e544b2fae/HomeHelpers/[image]" /></code></pre>
+					</section>
+					<aside class="notes">
+						<p>Use the <em>Space</em> key to navigate through all slides.</p>
+					</aside>
+				</section>
+
+				<!--<section>
 					<h2>Slides</h2>
 					<p>
 						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
@@ -158,24 +348,6 @@
 					</p>
 				</section>
 
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-					</p>
-				</section>
 
 				<section>
 					<section data-background="#dddddd">
@@ -365,14 +537,14 @@ Reveal.addEventListener( 'customevent', function() {
 						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
 						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
 					</ul>
-				</section>
+				</section>-->
 
 				<section style="text-align: left;">
 					<h1>THE END</h1>
-					<p>
+					<!--<p>
 						- <a href="http://slides.com">Try the online editor</a> <br>
 						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+					</p>-->
 				</section>
 
 			</div>

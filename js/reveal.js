@@ -457,10 +457,13 @@
 
 		// Arrow controls
 		createSingletonNode( dom.wrapper, 'aside', 'controls',
+			'<img class="logo" src="images/four51-logo.svg" />' +
+			'<span class="wrapper">' +
 			'<div class="navigate-left"></div>' +
 			'<div class="navigate-right"></div>' +
 			'<div class="navigate-up"></div>' +
-			'<div class="navigate-down"></div>' );
+			'<div class="navigate-down"></div>' +
+			'</span>');
 
 		// Slide number
 		dom.slideNumber = createSingletonNode( dom.wrapper, 'div', 'slide-number', '' );
